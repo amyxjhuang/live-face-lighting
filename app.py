@@ -14,7 +14,7 @@ while True:
     faces = faceCascade.detectMultiScale(
         gray,
         scaleFactor=1.1,
-        minNeighbors=11,
+        minNeighbors=15,
         minSize=(30, 30),
         flags=cv2.CASCADE_SCALE_IMAGE
     )
@@ -41,7 +41,7 @@ while True:
         display_text = f"{projected_pointx, projected_pointy} {face_midpoint} {center_coordinates}"
 
         cv2.putText(frame, display_text, (x,y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,0), 2)
-        cv2.line(frame, center_coordinates,(projected_pointx, projected_pointy), pink_color, border_thickness)
+        cv2.arrowedLine(frame, center_coordinates,(projected_pointx, projected_pointy), pink_color, border_thickness)
 
     # Display the resulting frame
     cv2.imshow('Video', frame)
