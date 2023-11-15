@@ -1,13 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Amy's three.js app</title>
-		<style>
-			body { margin: 0; }
-		</style>
-	</head>
-	<body>
-		<script type="module" src="/main.js"></script>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Amy Huang | Face tracking and Rendering</title>
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Face tracking and rendering light</h1>
+    <script type="module" src="/main.js" defer></script>
+    <script>
+      function startProcessingFace() {
+        isProcessing = true;
+        fetch("http://127.0.0.1:5001/start_processing", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json", // Set the content type based on your server expectations
+            // Add any other headers if needed
+          },
+          // Add body if you need to send data with the request
+          // body: JSON.stringify({ key: 'value' }),
+        });
+      }
+      function stopProcessingFace() {
+        isProcessing = false;
+        fetch("http://127.0.0.1:5001/stop_processing", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json", // Set the content type based on your server expectations
+            // Add any other headers if needed
+          },
+          // Add body if you need to send data with the request
+          // body: JSON.stringify({ key: 'value' }),
+        });
+      }
+    </script>
+    <button onclick="animateScene()">Animate</button>
+    <button onclick="startProcessingFace()">Start processing</button>
+    <button onclick="stopProcessingFace()">Stop processing</button>
+  </body>
 </html>
